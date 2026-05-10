@@ -12,7 +12,6 @@ import java.time.Duration;
 public class TestCase {
     @Test
     public void test(){
-        //System.setProperty("webdriver.chrome.driver","C:\\Program Files\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
@@ -22,8 +21,6 @@ public class TestCase {
 
         WebElement dayDropdownelement = driver.findElement(By.name("DateOfBirthDay"));
         Select selectDay = new Select(dayDropdownelement);
-        //selectDay.selectByVisibleText("10");
-        //selectDay.selectByValue("9");
         selectDay.selectByIndex(6);
         WebElement monthDropdownelement = driver.findElement(By.name("DataOfBirthMonth"));
         Select selectMonth = new Select(monthDropdownelement);
@@ -31,8 +28,6 @@ public class TestCase {
         WebElement yearDropdownelement = driver.findElement(By.name("DataOfBirthYear"));
         Select selectYear = new Select(monthDropdownelement);
         selectYear.selectByIndex(6);
-
-
         driver.quit();
 
     }

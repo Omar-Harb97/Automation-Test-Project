@@ -21,7 +21,7 @@ public class socialMedia {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
 
-        driver.get("https://demo.nopcommerce.com/");
+        driver.get("https://demo.nopcommerce.com//");
         driver.findElement(By.cssSelector("[href=\"https://www.facebook.com/nopCommerce\"]")).click();
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
@@ -72,14 +72,14 @@ public class socialMedia {
             softAssert.assertEquals(actualNopCommerceURL,"https://demo.nopcommerce.com/");
 
         }
-//        if (actualNopCommerceURL == "https://demo.nopcommerce.com/news/rss/1")
-//        {
-//            Check = "True";
-//            softAssert.assertEquals(actualNopCommerceURL,"https://demo.nopcommerce.com/");
-//
-//        } else if (actualNopCommerceURL != "https://demo.nopcommerce.com/news/rss/1") {
-//            Check = "False";
-//        }
+        if (actualNopCommerceURL == "https://demo.nopcommerce.com/news/rss/1")
+        {
+            Check = "True";
+            softAssert.assertEquals(actualNopCommerceURL,"https://demo.nopcommerce.com/");
+
+        } else if (actualNopCommerceURL != "https://demo.nopcommerce.com/news/rss/1") {
+            Check = "False";
+        }
         softAssert.assertEquals(Check,"False");
         softAssert.assertAll();
     }

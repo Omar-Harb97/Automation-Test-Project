@@ -15,7 +15,6 @@ public class ActionClass {
 
     @Test
     public void test1() throws InterruptedException {
-        //System.setProperty("webdriver.chrome.driver","C:\\Program Files\\chromedriver.exe");
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
@@ -23,12 +22,10 @@ public class ActionClass {
 
         driver.get("https://demo.nopcommerce.com/");
 
-        //1- Create actions object
         Actions actions = new Actions(driver);
 
         WebElement computersCategory = driver.findElement(By.cssSelector("[href=\"/computers\"]"));
 
-        //2- Call methods or actions from actions object, dnt forget to add perform() felakher
         actions.moveToElement(computersCategory).perform();
     }
 }

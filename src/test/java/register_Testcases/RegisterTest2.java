@@ -26,7 +26,6 @@ public class RegisterTest2 {
 
     @Test
     public void register2(){
-       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         RegTest2 regTest2 = new RegTest2(driver);
         regTest2.insertusername("omar-harb","SuperSecretPassword!","SuperSecretPassword!");
         regTest2.registerationBtn();
