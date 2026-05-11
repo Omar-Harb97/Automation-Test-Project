@@ -2,15 +2,17 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.asserts.SoftAssert;
 
-public class RegTest2 {
+public class RegisterPage2 {
     WebDriver driver;
+    SoftAssert softAssert = new SoftAssert();
     By usernameField = By.id("username");
     By passwordField = By.id("password");
     By confirmationField = By.name("confirmPassword");
     By registerBtn = By.cssSelector("button[type='submit']");
 
-    public RegTest2(WebDriver driver) {
+    public RegisterPage2(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -23,5 +25,14 @@ public class RegTest2 {
 
     public void registerationBtn() {
         this.driver.findElement(this.registerBtn).click();
+    }
+
+    public void CheckReg() {
+        String actualUrl = this.driver.getCurrentUrl();
+        boolean isMesgDisplayed = this.driver.findElement(By.cssSelector("#flash")).isDisplayed();
+        this.softAssert.assertEquals(actualUrl, "https://practice.expandtesting.com/login");
+        this.softAssert.assertEquals(isMesgDisplayed, true);
+        this.softAssert.assertTrue(isMesgDisplayed);
+        this.softAssert.assertAll();
     }
 }

@@ -2,88 +2,40 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 
 public class RegisterPage {
     WebDriver driver;
-    By firstNameField = By.id("FirstName");
-    By lastNameField = By.id("LastName");
-    By dayDropDown = By.name("DateOfBirthDay");
-    By monthDropDown = By.name("DateOfBirthMonth");
-    By yearDropDown = By.name("DateOfBirthYear");
-    By emailField = By.id("Email");
-    By companyField = By.name("Company");
+    By username = By.id("username");
     By passwordField = By.id("password");
     By confirmationField = By.id("confirmPassword");
-    By maleRadioBtn = By.id("gender-male");
-    By femaleRadioBtn = By.id("gender-female");
     By registerBtn = By.cssSelector("button[type='submit']");
 
     public RegisterPage(WebDriver _driver) {
         this.driver = _driver;
     }
 
-    public void selectDayFromDayDropDown(String day) {
-        Select selectDay = new Select(this.driver.findElement(this.dayDropDown));
-        selectDay.selectByValue(day);
-    }
-
-    public void selectMonthFromMonthDropDown(String month) {
-        Select selectmonth = new Select(this.driver.findElement(this.monthDropDown));
-        selectmonth.selectByVisibleText(month);
-    }
-
-    public void selectYearFromYearDropDown(String year) {
-        Select selectYear = new Select(this.driver.findElement(this.yearDropDown));
-        selectYear.selectByValue(year);
-    }
-
-    public void insertName(String firstName, String lastName) {
-        this.driver.findElement(this.firstNameField).sendKeys(new CharSequence[]{firstName});
-        this.driver.findElement(this.lastNameField).sendKeys(new CharSequence[]{lastName});
-    }
-
-    public void insertusername(String email, String password, String confirmationPass) {
-        this.driver.findElement(this.emailField).sendKeys(new CharSequence[]{email});
+    public void insertusername(String username, String password, String confirmationPass) {
+        this.driver.findElement(this.username).sendKeys(new CharSequence[]{username});
         this.driver.findElement(this.passwordField).sendKeys(new CharSequence[]{password});
         this.driver.findElement(this.confirmationField).sendKeys(new CharSequence[]{confirmationPass});
     }
 
-    public void selectDateOfBirth(String day, String month, String year) {
-        Select selectDay = new Select(this.driver.findElement(this.dayDropDown));
-        selectDay.selectByValue(day);
-        Select selectmonth = new Select(this.driver.findElement(this.monthDropDown));
-        selectmonth.selectByVisibleText(month);
-        Select selectYear = new Select(this.driver.findElement(this.yearDropDown));
-        selectYear.selectByValue(year);
-    }
-
-    public void chooseGender(String gender) {
-        if (gender == "male") {
-            this.driver.findElement(this.maleRadioBtn).click();
-        } else if (gender == "female") {
-            this.driver.findElement(this.femaleRadioBtn).click();
-        }
-
-    }
-
-    public void registerationBtn() {
+    public void registerationBtn1() {
         this.driver.findElement(this.registerBtn).click();
     }
 
-    public void insertCompany(String company) {
-        this.driver.findElement(this.companyField).sendKeys(new CharSequence[]{company});
-    }
+    public void registerationBtn(){
 
-    public String getDayText(String day) {
-        return this.driver.findElement(By.cssSelector("[name=\"DateOfBirthDay\"]>[value=\"" + day + "\"]")).getText();
-    }
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    public String getMonthText(String month) {
-        return this.driver.findElement(By.cssSelector("[name=\"DateOfBirthMonth\"]>[value=\"" + month + "\"]")).getText();
-    }
+        wait.until(ExpectedConditions.elementToBeClickable(registerBtn));
 
-    public String getYearText(String year) {
-        return this.driver.findElement(By.cssSelector("[name=\"DateOfBirthYear\"]>[value=\"" + year + "\"]")).getText();
+        driver.findElement(registerBtn).click();
     }
 }

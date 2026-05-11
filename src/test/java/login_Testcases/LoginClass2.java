@@ -39,11 +39,7 @@ public class LoginClass2 {  WebDriver driver;
         softAssert.assertEquals(actualUrl, "https://practice.expandtesting.com/secure");
         softAssert.assertTrue(isMesgDisplayed);
         softAssert.assertAll();
-
-
-
     }
-
 
     @AfterMethod
     public void tearDown() {

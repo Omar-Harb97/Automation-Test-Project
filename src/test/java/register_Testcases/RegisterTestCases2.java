@@ -1,22 +1,19 @@
 package register_Testcases;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.RegisterPage;
+import org.testng.asserts.SoftAssert;
+import pages.RegisterPage2;
+import pages.LoginPage2;
 import java.time.Duration;
 
-public class RegisterTestCases {
-
+public class RegisterTestCases2 {
     WebDriver driver;
-    WebDriverWait wait;
-
     @BeforeMethod
     public void setUp(){
         WebDriverManager.chromedriver().setup();
@@ -27,18 +24,27 @@ public class RegisterTestCases {
         driver.get("https://practice.expandtesting.com/register");
     }
 
-    @Test
-    public void register(){
-        RegisterPage registerPage = new RegisterPage(driver);
-        registerPage.insertusername("omarharb5","SuperSecretPasswor","SuperSecretPasswor");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        registerPage.registerationBtn();
+    @Test(priority = 1)
+    public void register2(){
+        RegisterPage2 regTest2 = new RegisterPage2(driver);
+        //need to change the username everytime we run this function
+        regTest2.insertusername("omarharb71","SuperSecretPassword!","SuperSecretPassword!");
+        regTest2.registerationBtn();
+        regTest2.CheckReg();
+
+    }
+
+
+    //depend on the first test method (registration)
+    @Test(priority = 2)
+    public void LoginPage2(){
+        LoginPage2 loginPage2=new LoginPage2(driver);
+        loginPage2.ValidLogin2("practice","SuperSecretPassword!");
     }
 
     @AfterMethod
     public void tearDown() throws InterruptedException {
-        Thread.sleep(3000); //to see the result before close
+        Thread.sleep(5000);
         driver.quit();
     }
-
 }

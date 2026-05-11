@@ -4,15 +4,19 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.RegTest2;
-import pages.LoginPage2;
 import java.time.Duration;
 
-public class RegisterTest2 {
+public class RegisterNopcommerce {
+
     WebDriver driver;
+    WebDriverWait wait;
+
+    public RegisterNopcommerce(WebDriver driver) {
+    }
 
     @BeforeMethod
     public void setUp(){
@@ -21,24 +25,23 @@ public class RegisterTest2 {
         driver = new ChromeDriver(ops);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.get("https://practice.expandtesting.com/register");
+        driver.get("https://demo.nopcommerce.com/register");
     }
 
     @Test
-    public void register2(){
-        RegTest2 regTest2 = new RegTest2(driver);
-        regTest2.insertusername("omar-harb","SuperSecretPassword!","SuperSecretPassword!");
-        regTest2.registerationBtn();
-    }
-
-    @Test(dependsOnMethods = "register2")
-    public void LoginPage2(){
-        LoginPage2 loginPage2=new LoginPage2(driver);
-        loginPage2.ValidLogin2("practice","SuperSecretPassword!");
+    public void registernop(){
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        pages.RegisterNopcommerce registerPage = new pages.RegisterNopcommerce(driver);
+        registerPage.chooseGender("mail");
+        registerPage.insertName("omar","harb","oharb@gmail.com");
+        registerPage.insertCompany("NTG clarity");
+        registerPage.insertPass("Oharb123456","Oharb123456");
+        registerPage.registerationBtn();
     }
 
     @AfterMethod
     public void tearDown(){
         driver.quit();
     }
+
 }

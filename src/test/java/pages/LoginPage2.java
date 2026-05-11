@@ -21,7 +21,6 @@ public class LoginPage2 {
     public void loginBtn2() {
         this.driver.findElement(this.loginByn).click();
     }
-
     public void CheckLogin2() {
         String actualUrl = this.driver.getCurrentUrl();
         boolean isMesgDisplayed = this.driver.findElement(By.cssSelector("#flash")).isDisplayed();
@@ -30,5 +29,6 @@ public class LoginPage2 {
         this.softAssert.assertTrue(isMesgDisplayed);
         this.softAssert.assertAll();
     }
+
 
 }

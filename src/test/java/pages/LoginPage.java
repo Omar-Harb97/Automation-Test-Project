@@ -34,7 +34,6 @@ public class LoginPage {
         this.softAssert.assertEquals(isMenuDisplayed, true);
         this.softAssert.assertTrue(isMenuDisplayed);
         this.softAssert.assertAll();
-
     }
 
     public void loginBtn() {
